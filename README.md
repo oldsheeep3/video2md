@@ -40,6 +40,12 @@ cd video2md
 - ad-hoc 署名（Developer ID なし）なので、他の Mac で初めて開くときは「開発元を確認できません」と出ます。右クリック →「開く」で開けます。警告なしで配るには、Apple Developer Program での署名と公証が必要です。
 - ad-hoc 署名のアプリは、ビルドし直すとアクセシビリティの許可が外れることがあります。その場合は設定で付け直してください。
 
+## ブランチとリリース
+- 開発は `develop`（デフォルトブランチ）で行います。
+- `develop` を `main` にマージすると、GitHub Actions（[.github/workflows/release.yml](.github/workflows/release.yml)）が macOS 上で Universal（Apple Silicon / Intel）の `.dmg` をビルドし、GitHub Release に `v<バージョン>-<実行番号>` というタグで載せます。
+- バージョンは [scripts/Info.plist](scripts/Info.plist) の `CFBundleShortVersionString` で決まります。
+- Actions タブから手動実行（workflow_dispatch）もできます。
+
 ## 事前準備
 Chrome の **設定 → ユーザー補助 → 自動字幕起こし** をオンにします（日本語の動画なら言語も日本語に）。
 Live Caption の設定は macOS の保護で読み取れないため、アプリからオン/オフを直接は判定できません。字幕ウィンドウが出ないときに、上記のとおり案内します。
